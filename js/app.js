@@ -12,9 +12,12 @@ angular.module('rateApp', ['ui.bootstrap'])
         $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'K5GfF6QOd93AiHYgFSxwk1YhHGBO3fWQjHMglDul';
 	})
 	.controller('rateController', function($scope, $http) {
+
+		$scope.counter = 0;
+
 		$scope.refreshRate = function() {
 			$scope.loading = true;
-			$http.get(ratesUrl)
+			$http.get(ratesUrl + '?order=score')
 				.success(function(data) {
 					$scope.rates = data.results;
 				})
@@ -36,6 +39,7 @@ angular.module('rateApp', ['ui.bootstrap'])
                     $scope.newRate.objectId = responseData.objectId;
 					$scope.rates.push($scope.newRate);
 					$scope.newRate = {score: 0};
+					$scope.counter++;
 				})
                 .error(function(err) {
                     $scope.errorMessage = err;
@@ -49,7 +53,8 @@ angular.module('rateApp', ['ui.bootstrap'])
 		$scope.deleteRate = function(rate) {
 			$scope.inserting = true;
 			$http.delete(ratesUrl + '/' + rate.objectId, rate)
-				.success(function(responseData) {
+				.success(function() {
+					$scope.counter--;
 					$scope.refreshRate();
 				})
 				.error(function(err) {

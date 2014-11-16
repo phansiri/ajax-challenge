@@ -23,3 +23,7 @@ body {
     font-size: 15px;
     width: 3%;
 }
+
+#delete {
+    float: right;
+}
