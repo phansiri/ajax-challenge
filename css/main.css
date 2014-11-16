@@ -11,3 +11,15 @@ body {
     margin-right: 10px;
 }
 
+#rateMe {
+    font-size: 25px;
+}
+
+#commentTitle {
+    font-weight: bold;
+}
+
+#leftRate {
+    font-size: 15px;
+    width: 3%;
+}
