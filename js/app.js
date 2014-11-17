@@ -13,8 +13,6 @@ angular.module('rateApp', ['ui.bootstrap'])
 	})
 	.controller('rateController', function($scope, $http) {
 
-		$scope.counter = 0;
-
 		$scope.refreshRate = function() {
 			$scope.loading = true;
 			$http.get(ratesUrl + '?order=score')
@@ -39,7 +37,6 @@ angular.module('rateApp', ['ui.bootstrap'])
                     $scope.newRate.objectId = responseData.objectId;
 					$scope.rates.push($scope.newRate);
 					$scope.newRate = {score: 0};
-					$scope.counter++;
 				})
                 .error(function(err) {
                     $scope.errorMessage = err;
@@ -54,7 +51,6 @@ angular.module('rateApp', ['ui.bootstrap'])
 			$scope.inserting = true;
 			$http.delete(ratesUrl + '/' + rate.objectId, rate)
 				.success(function() {
-					$scope.counter--;
 					$scope.refreshRate();
 				})
 				.error(function(err) {

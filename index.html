@@ -92,10 +92,10 @@
                     <!--</li>-->
                 <!--</ul>-->
                 <!--<p ng-if="initialComment">No comments yet.  However, you can be the first to review this!</p>-->
+                <p ng-if="rates && rates.length == 0">No comments yet.  However, you can be the first to review this!</p>
+                <!--<span ng-if="rates && rates.length > 0">No comments yet.  However, you can be the first to review this!</span>-->
 
                 <div class="container-fluid" ng-repeat="rate in rates | orderBy: sortCol">
-                    <span ng-if="counter == 0">No comments yet.  However, you can be the first to review this!</span>
-
                     <div class="row">
                         <div class="col-md-1" id="leftRate">
                             <span class="glyphicon glyphicon-chevron-up" ng-click="incrementRate(rate, 1)"></span>
