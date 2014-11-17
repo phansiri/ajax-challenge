@@ -34,7 +34,7 @@
                                     <label for="rate-priority">Rate Me: </label>
                                     <rating id="rateStar" max="5" ng-model="newRate.priority"></rating>
                                 </div>
-                                <div id="animate" class="row" ng-if="newRate.priority">
+                                <div class="row" ng-if="newRate.priority">
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="rate-title">Short Title</label>
@@ -50,13 +50,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="animate" class="form-group" ng-if="newRate.priority">
+                                <div class="form-group" ng-if="newRate.priority">
                                     <label for="task-body">Comment</label>
                                     <input type="text" id="task-body" class="form-control"
                                     placeholder="Write your comment here" ng-model="newRate.body"/>
                                 </div>
                             </div>
-                            <div id="animate" class="form-group" ng-if="newRate.priority">
+                            <div class="form-group" ng-if="newRate.priority">
                                 <button type="submit" id="goldSubmit" class="btn btn-primary" ng-disabled="inserting">Save Comment</button>
                                 <img src="img/ajax-spinner-sm.gif" alt="loading animation" ng-if="inserting"/>
                             </div>
