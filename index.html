@@ -9,7 +9,6 @@
         <script src="lib/lodash.js"></script>
         <script src="lib/angular.js"></script>
         <script src="lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
-
     </head>
     <body>
         <main class="container" ng-app="rateApp" ng-controller="rateController">
@@ -24,64 +23,54 @@
             </section>
 
             <section>
-                <h2>Add a Comment</h2>
-                <form ng-submit="addRate()">
-                    <div class="container-fluid">
-
-                        <div id="rateMe">
-                            <label for="rate-priority">Rate Me: </label>
-                            <rating max="5" ng-model="newRate.priority"></rating>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label for="rate-title">Short Title</label>
-                                    <input type="text" id="rate-title" class="form-control"
-                                           placeholder="short title for your comment" ng-model="newRate.title"/>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add a Gold Star Comment</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form ng-submit="addRate()">
+                            <div class="container-fluid">
+                                <div id="rateMe">
+                                    <label for="rate-priority">Rate Me: </label>
+                                    <rating id="rateStar" max="5" ng-model="newRate.priority"></rating>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="rate-name">Name</label>
-                                    <input type="text" id="rate-name" class="form-control"
+                                <div id="animate" class="row" ng-if="newRate.priority">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="rate-title">Short Title</label>
+                                            <input type="text" id="rate-title" class="form-control"
+                                            placeholder="short title for your comment" ng-model="newRate.title"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="rate-name">Name</label>
+                                            <input type="text" id="rate-name" class="form-control"
                                             placeholder="First & Last Name" ng-model="newRate.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="animate" class="form-group" ng-if="newRate.priority">
+                                    <label for="task-body">Comment</label>
+                                    <input type="text" id="task-body" class="form-control"
+                                    placeholder="Write your comment here" ng-model="newRate.body"/>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="task-body">Comment</label>
-                            <input type="text" id="task-body" class="form-control"
-                                   placeholder="Write your comment here" ng-model="newRate.body"/>
-                        </div>
-
-
+                            <div id="animate" class="form-group" ng-if="newRate.priority">
+                                <button type="submit" id="goldSubmit" class="btn btn-primary" ng-disabled="inserting">Save Comment</button>
+                                <img src="img/ajax-spinner-sm.gif" alt="loading animation" ng-if="inserting"/>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" ng-disabled="inserting">Save Comment</button>
-                        <img src="img/ajax-spinner-sm.gif" alt="loading animation" ng-if="inserting"/>
-                    </div>
-                </form>
-
-                <!--
-                put a form here for entering a new comment
-                the user must select a rating, and enter a name, title, and comment body
-                before the comment can be saved to the server
-                for the rating selection, use the Angular Bootstrap Rating directive 
-                http://angular-ui.github.io/bootstrap/#/rating
-                their script file is included below
-                -->
+                </div>
             </section>
 
             <section>
                 <h2>Comments</h2>
-
                 <p id="noComment" ng-if="rates && rates.length == 0">No comments yet.  However, you can be the first to review this!</p>
-
-                <div class="container-fluid" ng-repeat="rate in rates | orderBy: sortCol">
-                    <div class="row">
+                <p id="noComment" ng-if="newRate.priority">Gold Star Comment!!!</p>
+                <div id="comments" class="container-fluid" ng-repeat="rate in rates | orderBy: sortCol">
+                    <div class="row" id="reviewStar">
                         <div class="col-md-1" id="leftRate">
                             <span class="glyphicon glyphicon-chevron-up" ng-click="incrementRate(rate, 1)"></span>
                             <p>{{rate.score}}</p>
@@ -89,8 +78,9 @@
                         </div>
                         <div class="col-md-11">
                             <div class="row">
+                                <button id="delete" class="btn btn-danger" ng-click="deleteRate(rate)">Delete</button>
                                 <div class="col-md-2">
-                                    <rating max="5" ng-model="rate.priority" ng-change="updateRate(rate)" readonly="!comment.done"></rating>
+                                    <rating id="rateStar" max="5" ng-model="rate.priority" ng-change="updateRate(rate)" readonly="!comment.done"></rating>
                                 </div>
                                 <div class="col-md-3" id="commentTitle">
                                     <p>{{rate.title}}</p>
@@ -98,26 +88,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p>{{'by ' + rate.name}}</p>
+                                    <span>by </span><p id="rateName">{{rate.name}}</p>
                                 </div>
                             </div>
-
                             <p>{{rate.body}}</p>
                         </div>
-                        <button id="delete" class="btn btn-danger" ng-click="deleteRate(rate)">Delete</button>
                     </div>
-
                 </div>
-
-                <!-- 
-                display existing comments here
-                each comment should also have UI allowing the user to vote up/down the comment
-                as well as delete it
-                 -->
             </section>
-
         </main>
-
         <script src="js/app.js"></script>
     </body>
 </html>

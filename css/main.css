@@ -3,6 +3,8 @@
 body {
     font-family: 'Ubuntu', 'Helvetica Neue', 'Helvetica', sans-serif;
     font-weight: 400;
+    background-image: url("../img/squared_metal_@2X.png");
+    background-attachment: fixed;
 }
 
 .product-picture {
@@ -26,4 +28,43 @@ body {
 
 #delete {
     float: right;
+}
+
+#rateName {
+    color: #0000EE;
+}
+
+.panel {
+    box-shadow: 10px 10px 5px goldenrod;
+}
+
+.panel-body {
+    background-color: rgba(255,255,255,0.8);
+}
+
+#rateStar {
+    color: goldenrod;
+}
+
+#goldSubmit {
+    background-color: goldenrod;
+}
+
+#reviewStar {
+    background-color: rgb(202,212,223);
+    border-bottom: solid;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    border: 2px solid;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px #888;
+}
+
+#comments {
+    padding-bottom: 10px;
+}
+
+#noComment {
+    font-size: 25px;
+    font-weight: 500;
 }

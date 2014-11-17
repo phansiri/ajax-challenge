@@ -1,8 +1,4 @@
 "use strict";
-/*
-    app.js, main Angular application script
-    define your module and controllers here
-*/
 
 var ratesUrl = 'https://api.parse.com/1/classes/rates';
 
@@ -25,7 +21,7 @@ angular.module('rateApp', ['ui.bootstrap'])
 				.finally(function() {
 					$scope.loading = false;
 				});
-		};
+		}; //refreshRate
 
 		$scope.refreshRate();
 		$scope.newRate = {score: 0};
@@ -45,7 +41,7 @@ angular.module('rateApp', ['ui.bootstrap'])
                 .finally(function() {
                     $scope.inserting = false;
                 });
-         };
+         }; //addRate
 
 		$scope.deleteRate = function(rate) {
 			$scope.inserting = true;
@@ -59,7 +55,7 @@ angular.module('rateApp', ['ui.bootstrap'])
 				.finally(function() {
 					$scope.inserting = false;
 				});
-		};
+		}; //deleteRate
 
 		$scope.incrementRate = function(rate, amount) {
 			if (rate.score >= 0) {
@@ -81,7 +77,7 @@ angular.module('rateApp', ['ui.bootstrap'])
 						$scope.updating = false;
 					});
 			}
-		}; //incrementVotes
+		}; //incrementRate
 
 		$scope.updateRate = function(rate) {
 			$http.put(ratesUrl + '/' + rate.objectId, rate)
@@ -91,5 +87,6 @@ angular.module('rateApp', ['ui.bootstrap'])
 				.error(function(err) {
 					$scope.errorMessage = err;
 				});
-		};
+		}; //updateRates
 	});
+
