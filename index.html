@@ -78,29 +78,14 @@
             <section>
                 <h2>Comments</h2>
 
-                <!--<ul class="comment">-->
-                    <!--<li class="comment" ng-repeat="rate in rates | orderBy: sortCol">-->
-                        <!--<div class="comment">-->
-                            <!--<span class="glyphicon glyphicon-chevron-up" ng-click="incrementRate(rate, 1)"></span>-->
-                            <!--<p>{{rate.score}}</p>-->
-                            <!--<span class="glyphicon glyphicon-chevron-down" ng-click="incrementRate(rate, -1)"></span>-->
-                            <!--<p>{{rate.title}}</p>-->
-                            <!--<p>{{'by ' + rate.name}}</p>-->
-                            <!--<p>{{rate.body}}</p>-->
-                            <!--<p>{{rate.priority}}</p>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                <!--</ul>-->
-                <!--<p ng-if="initialComment">No comments yet.  However, you can be the first to review this!</p>-->
-                <p ng-if="rates && rates.length == 0">No comments yet.  However, you can be the first to review this!</p>
-                <!--<span ng-if="rates && rates.length > 0">No comments yet.  However, you can be the first to review this!</span>-->
+                <p id="noComment" ng-if="rates && rates.length == 0">No comments yet.  However, you can be the first to review this!</p>
 
                 <div class="container-fluid" ng-repeat="rate in rates | orderBy: sortCol">
                     <div class="row">
                         <div class="col-md-1" id="leftRate">
                             <span class="glyphicon glyphicon-chevron-up" ng-click="incrementRate(rate, 1)"></span>
                             <p>{{rate.score}}</p>
-                            <span class="glyphicon glyphicon-chevron-down" ng-click="incrementRate(rate, -1)"></span>
+                            <span class="glyphicon glyphicon-chevron-down" ng-click="incrementRate(rate, -1)" ng-if="rate.score > 0"></span>
                         </div>
                         <div class="col-md-11">
                             <div class="row">
